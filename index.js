@@ -12,19 +12,7 @@ dotenv.config();
 
 conectarDB();
 
-const dominiosPermitidos = [process.env.FRONTEND_URL, process.env.BACKEND_URL];
-
-const corsOptions = {
-	origin: function (origin, callback) {
-		if (!origin || dominiosPermitidos.includes(origin)) {
-			callback(null, true);
-		} else {
-			callback(new Error("Dominio no permitido"));
-		}
-	},
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use("/api/veterinarios", veterinarioRoutes);
 app.use("/api/pacientes", pacienteRoutes);
